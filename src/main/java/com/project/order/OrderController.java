@@ -36,7 +36,7 @@ public class OrderController {
     public ResponseEntity<Order> addPriority(@RequestBody Order order) {
         Order priorityToAdd = orderService.addPriority(order);
         if (priorityToAdd == null){
-            return ResponseEntity.notFound().bulid();
+            return ResponseEntity.notFound().build();
         }
         return ResponseEntity.status(HttpStatus.CREATED).body(priorityToAdd);
     }
