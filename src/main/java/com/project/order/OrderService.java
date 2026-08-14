@@ -10,6 +10,8 @@ public class OrderService {
     @Autowired
     private OrderRepository orderRepository;
 
+    private OrderBST priorityTree = new OrderBST();
+
     public List<Order> getAllOrders(){
         List<Order> orders = orderRepository.findAll();
         if (orders.isEmpty()){
@@ -24,6 +26,8 @@ public class OrderService {
     }
 
     public Order addPriority(Order order) {
+        priorityTree.insert(order);
 
+        return order;
     }
 }
