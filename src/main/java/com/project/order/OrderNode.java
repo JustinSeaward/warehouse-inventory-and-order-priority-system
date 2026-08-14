@@ -51,12 +51,14 @@ public class OrderNode {
         }
 
 
-        // TODO: Fix highest priority logic
+        // TODO: Fix highest priority logic - DONE
+
+        // refactored this method from current.left to current.right to find the highest priority order.
         public Order findHighest() {
             OrderNode current = root;
 
-            while (current.left != null) {
-                current = current.left;
+            while (current.right != null) {
+                current = current.right;
             }
 
             return current.data;
