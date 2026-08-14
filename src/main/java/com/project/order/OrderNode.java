@@ -40,7 +40,7 @@ public class OrderNode {
             return current;
         }
 
-        // TODO: Implement inorder traversal
+        // TODO: Implement inorder traversal - DONE
         public void inorder(OrderNode node) {
             if (node == null) {
                 return;
@@ -61,6 +61,16 @@ public class OrderNode {
                 current = current.right;
             }
 
+            return current.data;
+        }
+
+        // TODO: Write findLowest priority logic
+
+        public Order findLowest() {
+            OrderNode current = root;
+            while(current.left != null){
+                current = current.left;
+            }
             return current.data;
         }
     }
