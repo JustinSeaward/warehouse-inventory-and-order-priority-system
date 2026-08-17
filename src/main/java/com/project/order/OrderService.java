@@ -30,4 +30,12 @@ public class OrderService {
 
         return order;
     }
+
+    public Order findHighestPriority() {
+       return priorityTree.findHighest();
+    }
+
+    public Order findLowestPriority() {
+        return priorityTree.findLowest();
+    }
 }
