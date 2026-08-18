@@ -15,12 +15,12 @@ public class OrderController {
     private OrderService  orderService;
 
     @GetMapping("/findall")
-    public ResponseEntity<Order> getAllOrders() {
+    public ResponseEntity<List<Order>> getAllOrders() {
         List<Order> orders = orderService.getAllOrders();
         if (orders.isEmpty()){
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok((Order) orders);
+        return ResponseEntity.ok(orders);
     }
 
     @PostMapping("/createnew")
