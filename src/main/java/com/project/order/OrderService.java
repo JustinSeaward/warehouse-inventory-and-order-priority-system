@@ -38,4 +38,8 @@ public class OrderService {
     public Order findLowestPriority() {
         return priorityTree.findLowest();
     }
+
+    public List<Order> sortedOrders(){
+        return priorityTree.getInorderOrders();
+    }
 }

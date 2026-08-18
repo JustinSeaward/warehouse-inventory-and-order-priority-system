@@ -58,4 +58,13 @@ public class OrderController {
         }
         return ResponseEntity.ok(lowestPriority);
     }
+
+    @GetMapping("/priority/inorder")
+    public ResponseEntity<List<Order>> inorderOrders(){
+        List<Order> inorderOrders = orderService.sortedOrders();
+        if(inorderOrders.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
+       return ResponseEntity.ok(inorderOrders);
+    }
 }
