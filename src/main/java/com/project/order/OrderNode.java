@@ -1,5 +1,8 @@
 package com.project.order;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class OrderNode {
         Order data;
         OrderNode left;
@@ -40,19 +43,23 @@ public class OrderNode {
             return current;
         }
 
+        public List<Order> getInorderOrders(){
+            List<Order> sortedOrders = new ArrayList<>();
+            inorder(root, sortedOrders);
+            return sortedOrders;
+        }
+
         // TODO: Implement inorder traversal - DONE
-        public void inorder(OrderNode node) {
+        public void inorder(OrderNode node, List<Order> list) {
             if (node == null) {
                 return;
             }
-            inorder(node.left);
-            System.out.println(node.data.getPriorityLevel());
-            inorder(node.right);
+            inorder(node.left, list);
+            list.add(node.data);
+            inorder(node.right, list);
         }
 
-
         // TODO: Fix highest priority logic - DONE
-
         // refactored this method from current.left to current.right to find the highest priority order.
         public Order findHighest() {
             OrderNode current = root;
