@@ -1,5 +1,6 @@
 package com.project.order;
 
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,14 @@ public class OrderService {
 
     private OrderBST priorityTree = new OrderBST();
 
+    @PostConstruct
+    public void initTree(){
+        List<Order> orders = orderRepository.findAll();
+        for(int i = 0; i < orders.size(); i++){
+            priorityTree.insert(orders.get(i));
+        }
+    }
+
     public List<Order> getAllOrders(){
         List<Order> orders = orderRepository.findAll();
         if (orders.isEmpty()){
@@ -22,7 +31,9 @@ public class OrderService {
     }
 
     public Order createOrder(Order order){
-        return orderRepository.save(order);
+        Order savedOrder = orderRepository.save(order);
+        priorityTree.insert(savedOrder);
+        return savedOrder;
     }
 
     public Order addPriority(Order order) {
