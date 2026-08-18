@@ -27,12 +27,15 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.CREATED).body(newProduct);
     }
 
-
-    @GetMapping("/sorted/price")
-    public List<Product> getSorted(@RequestParam String by) {
-
-        // TODO: handle multiple sort types
-        return productService.sortByPrice(productService.getAllProducts());
+    // TODO: handle multiple sort types - DONE
+    @GetMapping("/sorted")
+    public ResponseEntity<List<Product>> getSorted(@RequestParam String by) {
+        if(by.equals("price")){
+            return ResponseEntity.ok(productService.sortByPrice(productService.getAllProducts()));
+        }
+        if(by.equals("stock")){
+            return ResponseEntity.ok(productService.sortByStock(productService.getAllProducts()));
+        }
+        return ResponseEntity.notFound().build();
     }
-
 }
