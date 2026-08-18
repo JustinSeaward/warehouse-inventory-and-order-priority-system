@@ -55,14 +55,11 @@ public class OrderNode {
                 return;
             }
             inorder(node.left, list);
-            System.out.println(node.data.getPriorityLevel());
             list.add(node.data);
             inorder(node.right, list);
         }
 
-
         // TODO: Fix highest priority logic - DONE
-
         // refactored this method from current.left to current.right to find the highest priority order.
         public Order findHighest() {
             OrderNode current = root;
