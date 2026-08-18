@@ -41,5 +41,21 @@ public class OrderController {
         return ResponseEntity.status(HttpStatus.CREATED).body(priorityToAdd);
     }
 
+    @GetMapping("/priority/highest")
+    public ResponseEntity<Order> highestPriority() {
+        Order highestPriority = orderService.findHighestPriority();
+        if(highestPriority == null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(highestPriority);
+    }
 
+    @GetMapping("/priority/lowest")
+    public ResponseEntity<Order> lowestPriority() {
+        Order lowestPriority = orderService.findLowestPriority();
+        if(lowestPriority == null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(lowestPriority);
+    }
 }
