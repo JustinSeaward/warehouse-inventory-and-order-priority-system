@@ -1,5 +1,8 @@
 package com.project.order;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class OrderNode {
         Order data;
         OrderNode left;
@@ -40,14 +43,21 @@ public class OrderNode {
             return current;
         }
 
+        public List<Order> getInorderOrders(){
+            List<Order> sortedOrders = new ArrayList<>();
+            inorder(root, sortedOrders);
+            return sortedOrders;
+        }
+
         // TODO: Implement inorder traversal - DONE
-        public void inorder(OrderNode node) {
+        public void inorder(OrderNode node, List<Order> list) {
             if (node == null) {
                 return;
             }
-            inorder(node.left);
+            inorder(node.left, list);
             System.out.println(node.data.getPriorityLevel());
-            inorder(node.right);
+            list.add(node.data);
+            inorder(node.right, list);
         }
 
 
