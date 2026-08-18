@@ -17,7 +17,7 @@ public class OrderNode {
 
         OrderNode root;
 
-        // TODO: Fix insertion logic
+        // TODO: Fix insertion logic - DONE
         public void insert(Order order) {
             root = insertRecursive(root, order);
         }
