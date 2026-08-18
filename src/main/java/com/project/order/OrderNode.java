@@ -63,6 +63,9 @@ public class OrderNode {
         // refactored this method from current.left to current.right to find the highest priority order.
         public Order findHighest() {
             OrderNode current = root;
+            if(current == null){
+                return null;
+            }
             while (current.right != null) {
                 current = current.right;
             }
@@ -70,10 +73,13 @@ public class OrderNode {
             return current.data;
         }
 
-        // TODO: Write findLowest priority logic
+        // TODO: Write findLowest priority logic - DONE
 
         public Order findLowest() {
             OrderNode current = root;
+            if(current == null){
+                return null;
+            }
             while(current.left != null){
                 current = current.left;
             }
