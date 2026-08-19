@@ -53,4 +53,9 @@ public class OrderService {
     public List<Order> sortedOrders(){
         return priorityTree.getInorderOrders();
     }
+
+    public List<Order> sortedOrdersHighToLow(){
+        return priorityTree.getOrdersHighToLow();
+    }
+
 }
