@@ -67,4 +67,13 @@ public class OrderController {
         }
        return ResponseEntity.ok(inorderOrders);
     }
+
+    @GetMapping("/priority/hightolow")
+    public ResponseEntity<List<Order>> inorderOrdersHighToLow(){
+        List<Order> ordersHighToLow = orderService.sortedOrdersHighToLow();
+        if(ordersHighToLow.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(ordersHighToLow);
+    }
 }

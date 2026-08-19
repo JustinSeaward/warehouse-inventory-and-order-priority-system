@@ -32,9 +32,6 @@ public class OrderNode {
             // Note: priorityLevel values can repeat across orders.
             // Decide where duplicates should go and be ready to explain your choice.
 
-            // I decide to put the duplicates and lower priority orders to the left side
-            // if they are less then or equal to the parent node, else the
-            // higher priority orders go right.
             if (order.getPriorityLevel() <= current.data.getPriorityLevel()) {
                 current.left = insertRecursive(current.left, order);
             } else {
@@ -57,6 +54,21 @@ public class OrderNode {
             inorder(node.left, list);
             list.add(node.data);
             inorder(node.right, list);
+        }
+
+        public List<Order> getOrdersHighToLow(){
+            List<Order> sortedOrders = new ArrayList<>();
+            inorderOrdersHighestToLowest(root, sortedOrders);
+            return sortedOrders;
+        }
+
+        public void inorderOrdersHighestToLowest(OrderNode node, List<Order> list) {
+            if (node == null) {
+                return;
+            }
+            inorderOrdersHighestToLowest(node.right, list);
+            list.add(node.data);
+            inorderOrdersHighestToLowest(node.left, list);
         }
 
         // TODO: Fix highest priority logic - DONE
