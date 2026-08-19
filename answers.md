@@ -9,7 +9,7 @@ Binary Search Tree
     - The different between an average and worse-case time complexity for a BST is O(n) and O(log n). Where a skewed left tree has to look through each node like a list to find the value, the time complexity ends up being O(n) where the search time grows compared to the amount of data. Compared to a AVL tree, when looking for a value the time complexity is only O(log n) because the tree forces itself to be balanced and you eliminate half of the remaining nodes with every single step you take through the tree.
 
 •	Where would you place duplicate priority values in your tree? Explain your choice.
-    - I decide to put the duplicate priorities on the left side of the node to keep with the FIFO rule. This works perfectly because my findHighest() method only travels down the right side of the tree looking for the highest priority. When a duplicate is on the left side the method stops at the parent node and process that node first before ever looking at the left side node.
+    - I decide to put the duplicate priorities on the left side of the node to keep with the FIFO rule. This works perfectly because my findHighest() method only travels down the right side of the tree looking for the highest priority. When a duplicate is on the left side the method stops at the parent node and process that node first before ever looking on the left side node.
 
 
 Sorting Algorithm
