@@ -1,17 +1,24 @@
 package com.project.order;
 
+import com.project.customer.Customer;
+import com.project.customer.CustomerRepository;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OrderService {
     @Autowired
     private OrderRepository orderRepository;
 
+    @Autowired
+    private CustomerRepository customerRepository;
+
     private OrderBST priorityTree = new OrderBST();
+
 
     @PostConstruct
     public void initTree(){
@@ -32,6 +39,10 @@ public class OrderService {
 
     public Order createOrder(Order order){
         Order savedOrder = orderRepository.save(order);
+        Long customerId = savedOrder.getCustomer().getId();
+        Optional<Customer> customerInfo = customerRepository.findById(customerId);
+        Customer customer = customerInfo.get();
+        savedOrder.setCustomer(customer);
         priorityTree.insert(savedOrder);
         return savedOrder;
     }
